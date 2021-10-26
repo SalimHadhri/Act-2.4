@@ -5,7 +5,16 @@ public class main {
 		
 		LibraryManager librManag = new LibraryManager();
 		
-		librManag.afficherLivres(); 
+
+		System.out.println("**************************AFFichage des librairies*************") ;
+		
+		
+		librManag.afficherLibraries() ;
+		
+		System.out.println("**************************Ajout de livres*************") ;
+
+		
+		librManag.ajoutLivre();
 
 	}
 

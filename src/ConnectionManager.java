@@ -27,6 +27,5 @@ public class ConnectionManager {
         return con;
     }
     
-    
-
+   
 }

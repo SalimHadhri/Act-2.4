@@ -5,28 +5,30 @@ public class Book {
 	private String title ;
 	private String author ;
 	private String editor ;
-	private int pageNb ;
 	private String summary  ;
-	private String Library  ;
+	private int pageNb ;	
+	private int library_id  ;
 	
 	
 	public Book() {
 	
 	}
-
-
-	public Book(int id, String title, String author, String editor, int pageNb, String summary, String library) {
-
+	
+	public Book(int id) {
+		super();
 		this.id = id;
+	}
+
+	public Book(String title, String author, String editor, String summary, int pageNb, int library_id) {
+		super();
 		this.title = title;
 		this.author = author;
 		this.editor = editor;
-		this.pageNb = pageNb;
 		this.summary = summary;
-		this.Library = library;
+		this.pageNb = pageNb;
+		this.library_id = library_id;
 	}
 
-	
 	public boolean livresEgaux (Book book1, Book book2) {
 		
 		boolean egaux = false ;
@@ -39,23 +41,6 @@ public class Book {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", editor=" + editor + ", pageNb="
-				+ pageNb + ", summary=" + summary + ", Library=" + Library + "]";
-	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -116,17 +101,26 @@ public class Book {
 	}
 
 
-	public String getLibrary() {
-		return Library;
+	public int getLibrary_id() {
+		return library_id;
 	}
 
 
-	public void setLibrary(String library) {
-		Library = library;
+	public void setLibrary_id(int library_id) {
+		this.library_id = library_id;
 	}
-	
-	
-	
+
+
+	public Book(int id, String title, String author, String editor, String summary, int pageNb, int library_id) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.editor = editor;
+		this.summary = summary;
+		this.pageNb = pageNb;
+		this.library_id = library_id;
+	}
 	
 
 }
