@@ -137,6 +137,8 @@ import java.util.Scanner;
 				
 				return book;
 			}
+			
+			
 				public int  chooseLibrary () {
 					
 					afficherLibraries() ;				
@@ -150,7 +152,154 @@ import java.util.Scanner;
 				
 				
 				
+				public void trierLivresAuteur() {				
+
+					requete = "SELECT * FROM library.book ORDER BY author ; ";
+					
+					try {
+				         Statement stmt = con.createStatement();
+				         résultats = stmt.executeQuery(requete);
+						 boolean encore = résultats.next();
+						   while (encore) {
+							   System.out.println("*********** books ordred splitted  ********");
+							   System.out.println("id : " + résultats.getInt("id") +"\n"+ "title : "+résultats.getString("title")+ " \n"+ "author : "+résultats.getString("author") + " \n" +  "editor : "+résultats.getString("editor") +  "\n" +  "summary : "+résultats.getString("summary")
+							  +  "\n" + "nbr pages : "+ résultats.getInt("page_nb")); 
+							   
+							   encore = résultats.next();
+						   }
+						   résultats.close();
+						} catch (SQLException e) {
+							arret("Anomalie lors de l'execution de la requête") ;
+						}
+				}
 				
+				public void searchBookById () {
+					boolean toSearchOrNot = true ;
+					
+										
+					System.out.println("Do you want to search a book ?: 1/yes 2/no  ") ; 
+					Scanner sc1 = new Scanner(System.in);
+					int search = sc1.nextInt();
+					if (search==1) {
+						
+					
+					while (  toSearchOrNot ==true) {
+						
+					
+					System.out.println("Veuillez saisirl'ID du livre a chercher : ") ; 
+					Scanner sc = new Scanner(System.in);
+					int idBook = sc.nextInt();
+					
+
+					
+					requete = "SELECT * FROM library.book WHERE id = "+idBook + " ; " ;
+					
+					
+					
+					try {
+				         Statement stmt = con.createStatement();
+				         résultats = stmt.executeQuery(requete);
+						 boolean encore = résultats.next();
+						 boolean found = false ;
+						   while (encore && found == false) {
+							   						   
+							   if (résultats.getInt("id") == idBook) {
+								   System.out.println("id : " + résultats.getInt("id") +"\n"+ "title : "+résultats.getString("title")+ " \n"+ "author : "+résultats.getString("author") + " \n" +  "editor : "+résultats.getString("editor") +  "\n" +  "summary : "+résultats.getString("summary")
+									  +  "\n" + "nbr pages : "+ résultats.getInt("page_nb")); 
+								   found = true ;
+								   
+							   }
+							  						   
+							   encore = résultats.next();
+						   }
+						   résultats.close();
+						   if (found == false) {
+							   
+							   System.out.println("no such book in our library !! ");
+						   }
+						   
+
+						} catch (SQLException e) {
+							arret("Anomalie lors de l'execution de la requête") ;
+						}
+					
+					
+					
+					System.out.println("Maybe another ?: 1/yes 2/no  ") ; 
+					Scanner sc3 = new Scanner(System.in);
+					int search3= sc3.nextInt();
+					if(search3==2) {
+						toSearchOrNot = false ;
+						System.out.println("maybe next time!! see you soon !!");
+					}
+					}
+					}else {
+						System.out.println("maybe next time!! see you soon !!");
+					}
+				}
+					
+				
+				///////////////////////////////////////////////////////
+				
+				public void searchBookByAuteur () {
+					boolean toSearchOrNot = true ;
+					
+										
+					System.out.println("Do you want to search a book ?: 1/yes 2/no  ") ; 
+					Scanner sc1 = new Scanner(System.in);
+					int search = sc1.nextInt();
+					if (search==1) {
+						
+					
+					while (  toSearchOrNot ==true) {
+						
+					
+					System.out.println("Veuillez saisirl'auteur du livre a chercher : ") ; 
+					Scanner sc2 = new Scanner(System.in);
+					String auteur = sc2.nextLine();
+					
+					String auteurClean = "'%"+auteur+"%'" ;
+
+					requete = "SELECT * FROM library.book WHERE author ILIKE "+auteurClean+" ; " ;
+					
+				try {
+				         Statement stmt = con.createStatement();
+				         résultats = stmt.executeQuery(requete);
+						 boolean encore = résultats.next();
+						 boolean found = false ;
+						   while (encore ) {
+							   						   
+
+								   System.out.println("id : " + résultats.getInt("id") +"\n"+ "title : "+résultats.getString("title")+ " \n"+ "author : "+résultats.getString("author") + " \n" +  "editor : "+résultats.getString("editor") +  "\n" +  "summary : "+résultats.getString("summary")
+									  +  "\n" + "nbr pages : "+ résultats.getInt("page_nb")); 
+								   						  						   
+							   encore = résultats.next();
+						   }
+						   résultats.close();
+
+							   
+						   }
+						   
+
+						catch (SQLException e) {
+							arret("Anomalie lors de l'execution de la requête") ;
+						}
+					
+					
+					System.out.println("Maybe another ?: 1/yes 2/no  ") ; 
+					Scanner sc3 = new Scanner(System.in);
+					int search3= sc3.nextInt();
+					if(search3==2) {
+						toSearchOrNot = false ;
+						System.out.println("maybe next time!! see you soon !!");
+					}
+					}
+					
+
+					}
+					
+				}
+					
 				
 				
 			

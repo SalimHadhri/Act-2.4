@@ -5,7 +5,7 @@ public class main {
 		
 		LibraryManager librManag = new LibraryManager();
 		
-
+/*
 		System.out.println("**************************AFFichage des librairies*************") ;
 		
 		
@@ -14,8 +14,19 @@ public class main {
 		System.out.println("**************************Ajout de livres*************") ;
 
 		
-		librManag.ajoutLivre();
-
+		librManag.ajoutLivre();*/
+		
+		System.out.println("**************************trie par auteur*************") ;
+		
+		librManag.trierLivresAuteur() ;
+		
+		/*System.out.println("**************************search by book id *************") ;
+		
+		librManag.searchBookById();
+		*/
+		System.out.println("**************************search by book author *************") ;
+		
+		librManag.searchBookByAuteur();
 	}
 
 }
